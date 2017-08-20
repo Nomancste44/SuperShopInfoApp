@@ -36,27 +36,30 @@ namespace SuperShopInfoApp
                     if (products.ProductId == itemId)
                     {
                         itemQuantity += products.ProductQuantity;
+                        products.ProductQuantity = itemQuantity;
                     }
                 }
-                aPrdouct.ProductId = itemId;
-                aPrdouct.ProductQuantity = itemQuantity;
             }
             else
             {
                 aPrdouct.ProductId = itemId;
                 aPrdouct.ProductQuantity = itemQuantity;
+                aShop.Products.Add(aPrdouct);
             }
-            aShop.Products.Add(aPrdouct);
+           
         }
 
         private void showDetailsButton_Click(object sender, EventArgs e)
         {
             StringBuilder shopDetails = new StringBuilder();
-            shopDetails.Append(aShop.ShopName + "<br/>");
-            shopDetails.Append(aShop.Address + "<br/>");
+            shopDetails.Append(aShop.ShopName);
+            shopDetails.Append(Environment.NewLine);
+            shopDetails.Append(aShop.Address);
+            shopDetails.Append(Environment.NewLine);
             foreach (ProductInfo aProductInfo in aShop.Products)
             {
-                shopDetails.Append(aProductInfo.ProductId + " " + aProductInfo.ProductQuantity+"<br/>");
+                shopDetails.Append(aProductInfo.ProductId + " " + aProductInfo.ProductQuantity);
+                shopDetails.Append(Environment.NewLine);
             }
             MessageBox.Show(shopDetails.ToString());
         }
